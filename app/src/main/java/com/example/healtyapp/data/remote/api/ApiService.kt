@@ -4,6 +4,7 @@ import com.example.healtyapp.data.remote.dto.PageResponse
 import com.example.healtyapp.data.remote.dto.Patient
 import com.example.healtyapp.data.remote.dto.TokenResponse
 import com.example.healtyapp.data.remote.dto.Appointment
+import com.example.healtyapp.data.remote.dto.Registro
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -29,4 +30,14 @@ interface ApiService {
 
     @POST("citas/")
     suspend fun crearCita(@Body body: Appointment): Appointment
+
+    @GET("registros/")
+    fun getRegistros(
+        @Query("cita") citaId: Int,
+        @Query("page") page: Int = 1
+    ): PageResponse<Registro>
+
+    @POST("registros/")
+    fun crearRegistro(@Body body: Registro): Registro
+
 }
