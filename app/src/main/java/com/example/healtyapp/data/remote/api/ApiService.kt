@@ -39,6 +39,6 @@ interface ApiService {
     ): Call<PageResponse<Registro>>
 
     @POST("registros/")
-    suspend fun crearRegistro(@Body body: Registro): Registro
+    fun crearRegistro(@Body body: Registro): Call<Registro>
 
 }

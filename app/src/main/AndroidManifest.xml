@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HealtyApp"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name=".ui.registros.CrearRegistroActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.registros.RegistrosActivity"
             android:exported="false" />
         <activity
