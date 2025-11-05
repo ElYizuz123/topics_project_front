@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.*
 import com.example.healtyapp.R
 import com.example.healtyapp.data.remote.dto.Registro
 
-class RegistrosAdapter : ListAdapter<Registro, RegistrosAdapter.VH>(DIFF) {
+class RegistrosAdapter : androidx.recyclerview.widget.ListAdapter<Registro, RegistrosAdapter.VH>(DIFF) {
 
     companion object {
         private val DIFF = object : DiffUtil.ItemCallback<Registro>() {

@@ -4,11 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healtyapp.data.remote.api.ApiClient
 import com.example.healtyapp.data.remote.dto.Registro
-import com.example.healtyapp.data.remote.dto.PageResponseRegistro
+import com.example.healtyapp.data.remote.dto.PageResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import retrofit2.awaitResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 data class RegistrosUiState(
     val items: List<Registro> = emptyList(),
@@ -25,16 +26,19 @@ class RegistrosViewModel : ViewModel() {
         _state.value = _state.value.copy(isLoading = true)
         viewModelScope.launch {
             try {
-                val res = ApiClient.api.getRegistros(citaId).awaitResponse()
-                if (res.isSuccessful) {
+                val response = withContext(Dispatchers.IO) {
+                    ApiClient.api.getRegistros(citaId).execute()
+                }
+                if (response.isSuccessful) {
+                    val body = response.body()
                     _state.value = _state.value.copy(
-                        items = res.body()!!.results,
+                        items = body?.results ?: emptyList(),
                         isLoading = false
                     )
                 } else {
                     _state.value = _state.value.copy(
                         isLoading = false,
-                        error = "Error ${res.code()}"
+                        error = "Error ${response.code()}"
                     )
                 }
             } catch (e: Exception) {

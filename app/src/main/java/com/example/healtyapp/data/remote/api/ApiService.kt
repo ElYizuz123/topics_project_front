@@ -5,6 +5,7 @@ import com.example.healtyapp.data.remote.dto.Patient
 import com.example.healtyapp.data.remote.dto.TokenResponse
 import com.example.healtyapp.data.remote.dto.Appointment
 import com.example.healtyapp.data.remote.dto.Registro
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -35,9 +36,9 @@ interface ApiService {
     fun getRegistros(
         @Query("cita") citaId: Int,
         @Query("page") page: Int = 1
-    ): PageResponse<Registro>
+    ): Call<PageResponse<Registro>>
 
     @POST("registros/")
-    fun crearRegistro(@Body body: Registro): Registro
+    suspend fun crearRegistro(@Body body: Registro): Registro
 
 }

@@ -2,6 +2,7 @@ package com.example.healtyapp.ui.citas
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healtyapp.R
 import com.example.healtyapp.data.remote.dto.Appointment
+import com.example.healtyapp.ui.registros.RegistrosActivity
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,7 +21,12 @@ import java.util.*
 class CitasActivity : ComponentActivity() {
 
     private val vm: CitasViewModel by viewModels()
-    private val adapter = CitasAdapter()
+    private val adapter = CitasAdapter { cita ->
+        // Navegación a registros cuando se hace clic en una cita
+        val intent = Intent(this, RegistrosActivity::class.java)
+        intent.putExtra("cita_id", cita.id)
+        startActivity(intent)
+    }
     private val scope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
