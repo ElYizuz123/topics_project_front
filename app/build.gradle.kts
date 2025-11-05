@@ -43,6 +43,8 @@ dependencies {
 
     // RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // CardView
+    implementation("androidx.cardview:cardview:1.0.0")
     
     // Retrofit + Gson
     implementation("com.squareup.retrofit2:retrofit:2.11.0")

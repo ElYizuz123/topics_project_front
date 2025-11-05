@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healtyapp.R
 import com.example.healtyapp.data.remote.dto.Registro
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ class RegistrosActivity : ComponentActivity() {
         val citaId = intent.getIntExtra("cita_id", -1)
 
         val rv = findViewById<RecyclerView>(R.id.rvRegistros)
-        val btnNuevo = findViewById<Button>(R.id.btnNuevo)
+        val btnNuevo = findViewById<FloatingActionButton>(R.id.btnNuevo)
 
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
