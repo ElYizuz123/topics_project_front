@@ -1,7 +1,5 @@
 package com.example.healtyapp.ui.citas
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,20 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healtyapp.R
 import com.example.healtyapp.data.remote.dto.Appointment
-import com.example.healtyapp.ui.registros.RegistrosActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.gson.Gson
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.*
 
 class CitasActivity : ComponentActivity() {
 
     private val vm: CitasViewModel by viewModels()
     private val adapter = CitasAdapter { cita ->
-        // Navegación a registros cuando se hace clic en una cita
-        val intent = Intent(this, RegistrosActivity::class.java)
-        intent.putExtra("cita_id", cita.id)
+        // Navegación a detalles de la cita
+        val intent = Intent(this, CitaDetalleActivity::class.java)
+        intent.putExtra("cita", Gson().toJson(cita))
         startActivity(intent)
     }
     private val scope = MainScope()
@@ -56,7 +53,12 @@ class CitasActivity : ComponentActivity() {
             }
         })
 
-        btnNueva.setOnClickListener { mostrarDialogoNueva(pacienteId) }
+        btnNueva.setOnClickListener { 
+            // Abrir actividad de crear cita
+            val intent = Intent(this, CrearCitaActivity::class.java)
+            intent.putExtra("paciente_id", pacienteId)
+            startActivity(intent)
+        }
 
         scope.launch {
             vm.state.collectLatest { s ->
@@ -71,31 +73,15 @@ class CitasActivity : ComponentActivity() {
 
         vm.load(pacienteId, 1)
     }
-
-    private fun mostrarDialogoNueva(pacienteId: Int) {
-        // Diálogo simple con DatePicker y TimePicker
-        val cal = Calendar.getInstance()
-
-        DatePickerDialog(this, { _, y, m, d ->
-            val fecha = String.format("%04d-%02d-%02d", y, m + 1, d)
-            TimePickerDialog(this, { _, hh, mm ->
-                val hora = String.format("%02d:%02d:00", hh, mm)
-                // Datos básicos para crear cita
-                val motivo = "Consulta" // puedes reemplazar por un EditText en un AlertDialog personalizado
-                val nueva = Appointment(
-                    id = 0,
-                    paciente = pacienteId,
-                    fecha = fecha,
-                    hora = hora,
-                    motivo = motivo,
-                    tipo = "primera",
-                    estado = "pendiente"
-                )
-                vm.crearCita(nueva) {
-                    Toast.makeText(this, "Cita creada", Toast.LENGTH_SHORT).show()
-                }
-            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+    
+    override fun onResume() {
+        super.onResume()
+        // Recargar las citas cuando se regrese a esta actividad
+        val pacienteId = intent.getIntExtra("paciente_id", -1)
+        if (pacienteId != -1) {
+            vm.load(pacienteId, 1)
+        }
     }
 
 }
+

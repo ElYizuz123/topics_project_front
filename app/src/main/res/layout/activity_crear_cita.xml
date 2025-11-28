@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/accent"
+        android:padding="24dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📋 Nueva Cita"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completa la información de la cita"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:alpha="0.9"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Card: Información Básica -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="📅 Información Básica"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Fecha -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Button
+                        android:id="@+id/btnSeleccionarFecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="Seleccionar fecha"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvFechaSeleccionada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No seleccionada"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:gravity="center"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Hora -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hora"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Button
+                        android:id="@+id/btnSeleccionarHora"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="Seleccionar hora"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvHoraSeleccionada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No seleccionada"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:gravity="center"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Motivo -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Motivo"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etMotivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="Seguimiento nutricional"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Tipo -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de cita"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/input_background"
+                        android:padding="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Estado -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spEstado"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/input_background"
+                        android:padding="16dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Información de Ejercicio -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="💪 Información de Ejercicio"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Tipo de ejercicio -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de ejercicio"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etTipoEjercicio"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="Ej: Cardio, Pesas, Yoga"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Repeticiones -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Repeticiones"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etRepeticiones"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="20"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Tiempo (minutos) -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tiempo (minutos)"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etTiempo"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="45"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Intensidad -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Intensidad"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spIntensidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/input_background"
+                        android:padding="16dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Frecuencia semanal -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Frecuencia semanal (días)"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etFrecuenciaSemanal"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="3"
+                        android:inputType="number"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Progreso positivo -->
+                    <CheckBox
+                        android:id="@+id/chkProgresoPositivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Progreso positivo"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Métricas Corporales -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="📊 Métricas Corporales"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- IMC -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IMC"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etIMC"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="24.50"
+                        android:inputType="numberDecimal"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Porcentaje de grasa corporal -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Porcentaje de grasa corporal (%)"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etPorcentajeGrasa"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="18.30"
+                        android:inputType="numberDecimal"
+                        android:textColorHint="@color/text_hint"
+                        android:padding="16dp"
+                        android:background="@drawable/input_background" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botones -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/btnCancelar"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Cancelar"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/button_secondary"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnGuardar"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Guardar Cita"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_primary"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                android:indeterminateTint="@color/accent" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.HealtyApp"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name=".ui.citas.CrearCitaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.citas.CitaDetalleActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.registros.CrearRegistroActivity"
             android:exported="false" />
         <activity
