@@ -1,5 +1,6 @@
 package com.example.healtyapp.ui.citas
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,6 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.cardview.widget.CardView
 import com.example.healtyapp.R
 import com.example.healtyapp.data.remote.dto.Appointment
+import com.example.healtyapp.ui.registros.RegistrosActivity
 import com.google.gson.Gson
 
 class CitaDetalleActivity : ComponentActivity() {
@@ -22,6 +24,12 @@ class CitaDetalleActivity : ComponentActivity() {
         val cita = Gson().fromJson(citaJson, Appointment::class.java)
         
         mostrarDatos(cita)
+        
+        findViewById<Button>(R.id.btnVerRegistros).setOnClickListener {
+            val intent = Intent(this, RegistrosActivity::class.java)
+            intent.putExtra("cita_id", cita.id)
+            startActivity(intent)
+        }
         
         findViewById<Button>(R.id.btnVolver).setOnClickListener {
             finish()

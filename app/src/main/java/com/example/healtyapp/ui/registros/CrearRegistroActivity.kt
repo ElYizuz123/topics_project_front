@@ -34,10 +34,31 @@ class CrearRegistroActivity : ComponentActivity() {
         val btnSeleccionarFecha = findViewById<Button>(R.id.btnSeleccionarFecha)
         val tvFechaSeleccionada = findViewById<TextView>(R.id.tvFechaSeleccionada)
         val chkCumplio = findViewById<CheckBox>(R.id.chkCumplio)
+        val seekBarDolor = findViewById<SeekBar>(R.id.seekBarDolor)
+        val tvDolorValue = findViewById<TextView>(R.id.tvDolorValue)
+        val spDificultad = findViewById<Spinner>(R.id.spDificultad)
         val etObservaciones = findViewById<EditText>(R.id.etObservaciones)
         val btnGuardar = findViewById<Button>(R.id.btnGuardar)
         val btnCancelar = findViewById<Button>(R.id.btnCancelar)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
+        // Configurar Spinner de dificultad
+        val dificultadAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            listOf("Seleccionar...", "facil", "moderado", "dificil")
+        )
+        dificultadAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spDificultad.adapter = dificultadAdapter
+
+        // Configurar SeekBar de dolor
+        seekBarDolor.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                tvDolorValue.text = progress.toString()
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
 
         // Configurar fecha actual por defecto
         val calendar = Calendar.getInstance()
@@ -67,6 +88,9 @@ class CrearRegistroActivity : ComponentActivity() {
         btnGuardar.setOnClickListener {
             val fecha = fechaSeleccionada
             val cumplio = chkCumplio.isChecked
+            val dolorEjecucion = seekBarDolor.progress
+            val dificultadSeleccionada = spDificultad.selectedItem.toString()
+            val dificultad = if (dificultadSeleccionada != "Seleccionar...") dificultadSeleccionada else null
             val observaciones = etObservaciones.text.toString().trim()
 
             if (fecha == null) {
@@ -79,6 +103,8 @@ class CrearRegistroActivity : ComponentActivity() {
                 cita = citaId,
                 fecha = fecha,
                 cumplio = cumplio,
+                dolor_ejecucion = dolorEjecucion,
+                dificultad_percibida = dificultad,
                 observaciones = observaciones.ifEmpty { null }
             )
 

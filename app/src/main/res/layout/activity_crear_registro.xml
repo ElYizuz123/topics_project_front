@@ -92,7 +92,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Card: ¿Cumplió? -->
+            <!-- Card: Información del Ejercicio -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,19 +110,82 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="✅ ¿Se cumplió el objetivo?"
+                        android:text="💪 Información del Ejercicio"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/text_primary"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="16dp" />
 
+                    <!-- ¿Cumplió? -->
                     <CheckBox
                         android:id="@+id/chkCumplio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sí, se cumplió el objetivo del día"
+                        android:text="✅ Se cumplió el objetivo del día"
                         android:textSize="14sp"
-                        android:textColor="@color/text_secondary" />
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Dolor durante ejecución -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nivel de dolor durante el ejercicio (0-10)"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sin dolor"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginEnd="8dp" />
+
+                        <SeekBar
+                            android:id="@+id/seekBarDolor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="10"
+                            android:progress="0" />
+
+                        <TextView
+                            android:id="@+id/tvDolorValue"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"
+                            android:layout_marginStart="8dp" />
+
+                    </LinearLayout>
+
+                    <!-- Dificultad percibida -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dificultad percibida"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spDificultad"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/input_background"
+                        android:padding="16dp" />
 
                 </LinearLayout>
 

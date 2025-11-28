@@ -437,15 +437,35 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Botón Volver -->
-            <Button
-                android:id="@+id/btnVolver"
+            <!-- Botones -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Volver"
-                android:textColor="@color/white"
-                android:background="@drawable/button_primary"
-                android:layout_marginTop="8dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/btnVerRegistros"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Ver Registros"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_primary"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnVolver"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Volver"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/button_secondary"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
